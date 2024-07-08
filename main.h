@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/08 02:39:59 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/08 05:07:12 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,31 @@ typedef enum
 	REDIRECTIONS,
 	PIPES,
 	COMMAND,
-	FLAG
+	FLAG,
+	STRING,
 } TokenType;
 
-typedef struct
+typedef struct s_token
 {
 	TokenType	type;
 	char		*value;
 } t_token;
 
+typedef struct s_input
+{
+	t_input *prev;
+	t_token *token;
+	t_input	*next;
+}	t_input;
+
 // string utils
 int		ft_strlen(char *str);
 int		ft_strcmp(char *str1, char *str2);
+// tokenizer
+int	is_quote(char *str);
+int	is_rederection(char *str);
+int	is_pipe(char *str);
+int	is_command(char *str);
+int	is_flag(char *str);
 
 #endif
