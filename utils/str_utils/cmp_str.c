@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   cmp_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/08 02:39:59 by agaladi          ###   ########.fr       */
+/*   Created: 2024/07/08 01:56:38 by agaladi           #+#    #+#             */
+/*   Updated: 2024/07/08 01:58:40 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include "../../main.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-typedef enum
+int	ft_strlen(char *str)
 {
-	QUOTES,
-	REDIRECTIONS,
-	PIPES,
-	COMMAND,
-	FLAG
-} TokenType;
+	int		count;
 
-typedef struct
+	count = 0;
+	while (str[count])
+		count++;
+	return (count);
+}
+
+int	ft_strcmp(char *str1, char *str2)
 {
-	TokenType	type;
-	char		*value;
-} t_token;
+	int		i;
 
-// string utils
-int		ft_strlen(char *str);
-int		ft_strcmp(char *str1, char *str2);
+	i = 0;
+	if (!str1 || !str2)
+		return (0);
+	if (ft_strlen(str1) != ft_strlen(str2))
+		return (0);
+	while (str1[i] && str2[i])
+	{
+		if (str1[i] != str2[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-#endif

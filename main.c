@@ -1,8 +1,7 @@
 #include <stdio.h>
+#include "main.h"
 
 int main(int argc, char *argv[])
 {
-	char *input;
-
 	return (0);
 }
