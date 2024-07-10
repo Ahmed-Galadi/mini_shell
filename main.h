@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/08 05:07:12 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/10 00:08:31 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct s_token
 
 typedef struct s_input
 {
-	t_input *prev;
+	struct s_input *prev;
 	t_token *token;
-	t_input	*next;
+	struct s_input	*next;
 }	t_input;
 
 // string utils
