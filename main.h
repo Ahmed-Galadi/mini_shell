@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/10 00:08:31 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/10 07:01:06 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,21 @@ typedef struct s_input
 	struct s_input	*next;
 }	t_input;
 
-// string utils
+// utils/string utils
 int		ft_strlen(char *str);
 int		ft_strcmp(char *str1, char *str2);
 // tokenizer
-int	is_quote(char *str);
-int	is_rederection(char *str);
-int	is_pipe(char *str);
-int	is_command(char *str);
-int	is_flag(char *str);
+int		is_quote(char *str);
+int		is_rederection(char *str);
+int		is_pipe(char *str);
+int		is_command(char *str);
+int		is_flag(char *str);
+// tokenizer/formater
+char	*trim_quotes(char *str);
+char	*add_spaces(char *str);
+char	*format(char *str);
+
+// errors
+void	error(void);
 
 #endif

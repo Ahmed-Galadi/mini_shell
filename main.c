@@ -23,45 +23,10 @@ int		quotes_count(char *str)
 
 }
 
-// void	check_pipe_in_quote(char *str)
-// {
-// 	char	*tmp;
-// 	int		i;
-
-// 	if ((quotes_count(str) % 2) != 0)
-// 		error();
-// 	tmp = str;
-// 	i = 0;
-// 	while (tmp[i] && tmp[i] != '\"')
-// 		i++;
-// 	while (tmp[i] && tmp[i] == '\"')
-// 		i++;
-// 	while (tmp[i])
-// 	{
-// 		if (tmp[i] == '|')
-// 		{
-// 			tmp[i] = (char)-1;
-// 			tmp = tmp + i + 1;
-// 			i = 0;
-// 		}
-// 		if (tmp[i] == '\"')
-// 			break;
-// 		i++;
-// 	}
-// }
 void	skip_quotes(char *str ,int *i)
 {
 	while (str[*i] == '\"')
 		*i += 1;
-}
-int		ft_strlen(char *str)
-{
-	int		count;
-
-	count = 0;
-	while(str[count])
-		count++;
-	return (count);
 }
 
 char	*trim_quotes(char *str)
@@ -89,29 +54,38 @@ char	*trim_quotes(char *str)
 	output[j] = '\0';
 	return (output);
 }
+ void	mask_pipes(char *str)
+ {
+	int		in_quote;
+	int		i;
+
+	in_quote = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\"' && !in_quote)
+			in_quote = 1;
+		else if (str[i] == '\"' && in_quote)
+			in_quote = 0;
+		if (in_quote && str[i] == '|')
+			str[i] = (char)-1;
+		i++;
+	}
+ }
+
+
 
 
 char	*format(char *str)
 {
 	char	*output;
-	int		in_quote;
-	int		i;
 
 	// remove uneeded quotes
 	output = trim_quotes(str);
 	// check for pipes and change them to (char)-1
-	in_quote = 0;
-	i = 0;
-	while (output[i])
-	{
-		if (output[i] == '\"' && !in_quote)
-			in_quote = 1;
-		else if (output[i] == '\"' && in_quote)
-			in_quote = 0;
-		if (in_quote && output[i] == '|')
-			output[i] = (char)-1;
-		i++;
-	}
+	mask_pipes(output);
+	// fotmat the input by adding spaces 
+	output = add_spaces(output);
 	return (output);
 }
 
@@ -119,7 +93,7 @@ char	*format(char *str)
 
 int main(int argc, char *argv[])
 {
-	char str[] = "cat -e |  \"\"\"mel' | ody\"\"\" \"\"\"|\"\"\" | ";
+	char str[] = "cat -e |\"\"\"mel'|ody\"\"\" \"\"\"|\"\"\"|cat";
 	printf("%s\n", str);
 	printf("%s\n", format(str));
 
