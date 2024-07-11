@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 02:42:54 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/11 04:17:29 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/11 06:31:49 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int	is_rederection(char *str)
 	|| ft_strcmp(str, ">") || ft_strcmp(str, "<"));
 }
 
-int	is_pipe(char *str)
-{
-	if (ft_strcmp(str, "|"))
-		return (1);
-	return (0);
-}
 
 int		is_command(char *str)
 {

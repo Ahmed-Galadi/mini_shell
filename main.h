@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/11 04:22:24 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/11 06:15:20 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-typedef enum
-{
-	QUOTES,
-	REDIRECTIONS,
-	PIPES,
-	COMMAND,
-	FLAG,
-	STRING,
-	EMPTY,
-} TokenType;
-
 typedef struct	s_command
 {
 	char		*command;
 	char		*flag;
 	char		*operator;
 	char		**options;
-	int			is_piped;
 }				t_command;
 
 typedef struct s_exec
@@ -56,7 +44,10 @@ int		is_command(char *str);
 int		is_flag(char *str);
 char	*trim_quotes(char *str);
 char	*add_spaces(char *str);
+void	switch_char(char *str, char to_find, char character);
 char	*format(char *str);
+t_exec	*new_exec(t_command *command, t_exec *prev);
+t_command	*new_command(char *input);
 // errors
 void	error(void);
 
