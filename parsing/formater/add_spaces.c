@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 06:52:32 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/10 06:58:24 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/11 01:03:05 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,17 @@ char	*add_spaces(char *str)
 	int		j;
 
 	output = malloc(ft_strlen(str) * 2 + 1);
-	i = 0;
-	j = 0;
+	(1 && (i = 0) && (j = 0));
 	while (str[i])
 	{
+		if ((str[i] == '>' && str[i + 1] =='>')
+			|| (str[i] == '<' && str[i + 1] =='<'))
+		{
+			output[j++] = ' ';
+			output[j++] = str[i++];
+			output[j++] = str[i++];
+			output[j++] = ' ';
+		}
 		if (((!is_op(str[i]) && is_op(str[i] + 1)))
 			|| (is_op(str[i]) && !is_op(str[i + 1])))
 		{
