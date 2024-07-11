@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 00:31:36 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/11 00:56:44 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/11 02:33:57 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 int main(int argc, char *argv[])
 {
 	char *str = argv[1];
-	if(argc == 2)
+	if (argc == 2)
 	{
-		printf("%s\n", str);
-		printf("%s\n", format(str));
+		char *formated_str = format(str);
+		char **splited_str = ft_split(formated_str, '|');
+		int i = 0;
+		while (splited_str[i])
+		{
+			printf("%s\n", splited_str[i]);
+			i++;
+		}
 	}
 	else
-		printf("\n");
-
+		printf("error\n");
 	return (0);
 }
