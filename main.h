@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/11 02:20:45 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/11 04:22:24 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,24 @@ typedef enum
 	COMMAND,
 	FLAG,
 	STRING,
+	EMPTY,
 } TokenType;
 
-typedef struct s_token
+typedef struct	s_command
 {
-	TokenType	type;
-	char		*value;
-} t_token;
+	char		*command;
+	char		*flag;
+	char		*operator;
+	char		**options;
+	int			is_piped;
+}				t_command;
 
-typedef struct s_input
+typedef struct s_exec
 {
-	struct s_input *prev;
-	t_token *token;
-	struct s_input	*next;
-}	t_input;
+	struct s_exec *prev;
+	t_command		*command;
+	struct s_exec	*next;
+}	t_exec;
 
 // utils
 int		ft_strlen(char *str);
