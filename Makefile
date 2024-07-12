@@ -6,13 +6,14 @@
 #    By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 23:26:11 by agaladi           #+#    #+#              #
-#    Updated: 2024/07/11 02:15:23 by agaladi          ###   ########.fr        #
+#    Updated: 2024/07/12 06:59:49 by agaladi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 SRCS = parsing/errors/error_handler.c  parsing/formater/add_spaces.c \
 parsing/formater/formater.c parsing/formater/trim_quotes.c \
+parsing/tokenizer/token_check.c parsing/tokenizer/token_utils.c parsing/tokenizer/tokenizer.c \
 utils/str_utils.c utils/ft_split.c main.c
 CFLAGS = -Wall -Wextra -Werror
 DEPS = main.h

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokeniser.c                                        :+:      :+:    :+:   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 01:51:35 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/12 04:47:40 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/12 07:05:45 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_exec	*tokenizer(char *input)
 
 	format_input = format(input);
 	splited_input = ft_split(format_input, '|');
+	i = 0;
 	output = new_exec(new_command(splited_input[i++]), NULL);
 	current = output;
 	while (splited_input[i])

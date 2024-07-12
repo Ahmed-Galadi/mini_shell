@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 04:23:19 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/12 04:47:45 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/12 07:03:27 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ t_opperator *new_operator(char *operator, char **input, int *i)
 	if (ft_strcmp(operator, ">>"))
 		redirection_init(output, input[*i + 1], "app");
 	if (ft_strcmp(operator, "<<"))
-		heredoc_init(operator, input[*i + 1]);
+		heredoc_init(output, input[*i + 1]);
+	return (output);
 }
 
 t_command	*new_command(char *input)
@@ -75,7 +76,7 @@ t_command	*new_command(char *input)
 		if (is_flag(splited_input[i]))
 			output->flag = splited_input[i];
 		if (is_rederection(splited_input[i]))
-			output->operator = new_opperator(splited_input[i], splited_input, &i);
+			output->operator = new_operator(splited_input[i], splited_input, &i);
 		// if (i != 0)
 		// 	add_option(output ,splited_input[i]); // TODO
 		i++;
