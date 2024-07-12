@@ -6,20 +6,23 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 01:51:35 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/11 06:01:41 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/12 04:47:40 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-int		command_count(char **commands)
+t_exec	*new_exec(t_command *command, t_exec *prev)
 {
-	int		count;
+	t_exec	*output;
 
-	count = 0;
-	while (commands[count])
-		count++;
-	return (count);
+	output = (t_exec *)malloc(sizeof(t_exec));
+	if (!output)
+		return (NULL);
+	output->prev = prev;
+	output->command = command;
+	output->next = NULL;
+	return (output);
 }
 
 t_exec	*tokenizer(char *input)

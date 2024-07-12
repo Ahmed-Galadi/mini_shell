@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/12 03:03:44 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/12 04:47:58 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct	s_opperator
 	e_tokenType	type;
 	char		*out_file;
 	char		*delimiter;
-	char		*in_file;
 } 				t_opperator;
 
 typedef struct	s_command
@@ -50,21 +49,22 @@ typedef struct s_exec
 }	t_exec;
 
 // utils
-int		ft_strlen(char *str);
-int		ft_strcmp(char *str1, char *str2);
-char	**ft_split(char const *s, char c);
+int			ft_strlen(char *str);
+int			ft_strcmp(char *str1, char *str2);
+char		**ft_split(char const *s, char c);
 // tokenizer
-int		is_quote(char *str);
-int		is_rederection(char *str);
-int		is_pipe(char *str);
-int		is_command(char *str);
-int		is_flag(char *str);
-char	*trim_quotes(char *str);
-char	*add_spaces(char *str);
-void	switch_char(char *str, char to_find, char character);
-char	*format(char *str);
-t_exec	*new_exec(t_command *command, t_exec *prev);
+int			is_quote(char *str);
+int			is_rederection(char *str);
+int			is_command(char *str);
+int			is_flag(char *str);
+char		*trim_quotes(char *str);
+char		*add_spaces(char *str);
+void		switch_char(char *str, char to_find, char character);
+char		*format(char *str);
+t_exec		*tokenizer(char *input);
+t_exec		*new_exec(t_command *command, t_exec *prev);
 t_command	*new_command(char *input);
+t_opperator *new_operator(char *operator, char **input, int *i);
 // errors
 void	error(void);
 
