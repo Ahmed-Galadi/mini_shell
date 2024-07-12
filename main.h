@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/11 06:15:20 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/12 03:03:44 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,28 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+
+typedef enum e_tokenType
+{
+	red_in,
+	red_out,
+	append_out,
+	here_doc
+}	e_tokenType;
+
+typedef struct	s_opperator
+{
+	e_tokenType	type;
+	char		*out_file;
+	char		*delimiter;
+	char		*in_file;
+} 				t_opperator;
+
 typedef struct	s_command
 {
 	char		*command;
 	char		*flag;
-	char		*operator;
+	t_opperator	*operator;
 	char		**options;
 }				t_command;
 
