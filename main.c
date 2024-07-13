@@ -6,11 +6,12 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 00:31:36 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/13 05:04:52 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/13 05:23:23 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include <readline/readline.h>
 
 void	print_commands(char	*input)
 {
@@ -46,9 +47,9 @@ void	print_commands(char	*input)
 
 int main(int argc, char *argv[])
 {
-	if (argc == 2)
-		print_commands(argv[1]);
-	else
-		printf("error\n");
+	(void)argc;
+	(void)argv;
+	while (1)
+		print_commands(readline("\n>"));
 	return (0);
 }

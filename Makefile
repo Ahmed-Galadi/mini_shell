@@ -6,7 +6,7 @@
 #    By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 23:26:11 by agaladi           #+#    #+#              #
-#    Updated: 2024/07/12 06:59:49 by agaladi          ###   ########.fr        #
+#    Updated: 2024/07/13 05:16:41 by agaladi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(OUT)
 
 $(OUT): $(OBJS) $(DEPS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(OUT)
+	$(CC) $(CFLAGS) -lreadline $(OBJS) -o $(OUT)
 
 $(LIB): $(OBJS)
 	ar -rc $(LIB) $(OBJS)
