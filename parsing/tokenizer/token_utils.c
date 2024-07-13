@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 04:23:19 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/13 04:59:24 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/13 08:18:09 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,6 @@ void	new_flag(t_command *output_command, char **splited_input, int *i)
 	output_command->flag[j] = NULL;
 }
 
-void	new_options(t_command *output_command, char **splited_input, int *i)
-{
-	int		count;
-	int		j;
-
-	count = 0;
-	j = *i;
-	while (splited_input[j++])
-		count++;
-	output_command->options = (char **)malloc((count + 1) * sizeof(char *));
-	if (!(output_command->options))
-		error();
-	j = 0;
-	while (splited_input[*i])
-	{
-		output_command->options[j++] = splited_input[*i];
-		*i += 1;
-	}
-	output_command->options[j] = NULL;
-}
-
 void	new_redirection(t_command *output_command, char **splited_input, int *i)
 {
 	if (is_rederection(splited_input[*i]))
@@ -111,6 +90,36 @@ void	new_redirection(t_command *output_command, char **splited_input, int *i)
 		*i += 2;
 	}
 }
+
+void	new_options(t_command *output_command, char **splited_input, int *i)
+{
+	int		count;
+	int		j;
+
+	count = 0;
+	j = *i;
+	if (!splited_input[j])
+		return ;
+	while (splited_input[j++])
+		count++;
+	output_command->options = (char **)malloc((count + 1) * sizeof(char *));
+	if (!(output_command->options))
+		error();
+	j = 0;
+	while (splited_input[*i])
+	{
+		if (is_rederection(splited_input[*i]))
+			new_redirection(output_command, splited_input, i);
+		else
+		{
+			output_command->options[j++] = splited_input[*i];
+			*i += 1;
+		}
+	}
+	output_command->options[j] = NULL;
+}
+
+
 
 
 t_command	*new_command(char *input)
@@ -128,7 +137,7 @@ t_command	*new_command(char *input)
 	i = 0;
 	output->command = splited_input[i++];
 	new_flag(output, splited_input, &i);
-	new_redirection(output, splited_input, &i);
+	//new_redirection(output, splited_input, &i);
 	new_options(output, splited_input, &i);
 	return (output);
 }
