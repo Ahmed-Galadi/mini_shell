@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 04:23:19 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/13 04:54:22 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/13 04:59:24 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ void	new_options(t_command *output_command, char **splited_input, int *i)
 	output_command->options = (char **)malloc((count + 1) * sizeof(char *));
 	if (!(output_command->options))
 		error();
+	j = 0;
 	while (splited_input[*i])
 	{
-		output_command->options[j] = splited_input[*i];
-		j++;
+		output_command->options[j++] = splited_input[*i];
 		*i += 1;
 	}
 	output_command->options[j] = NULL;
