@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/12 04:47:58 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/13 03:47:02 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_opperator
 typedef struct	s_command
 {
 	char		*command;
-	char		*flag;
+	char		**flag;
 	t_opperator	*operator;
 	char		**options;
 }				t_command;
@@ -64,7 +64,7 @@ char		*format(char *str);
 t_exec		*tokenizer(char *input);
 t_exec		*new_exec(t_command *command, t_exec *prev);
 t_command	*new_command(char *input);
-t_opperator *new_operator(char *operator, char **input, int *i);
+t_opperator *new_operator(char *operator, char **input, int i);
 // errors
 void	error(void);
 

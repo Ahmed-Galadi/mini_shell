@@ -6,14 +6,12 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 04:23:19 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/12 07:03:27 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/13 04:54:22 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-// void	add_option()
-// {}
 
 void	redirection_init(t_opperator *opp, char *file, char *type)
 {
@@ -40,7 +38,7 @@ void	heredoc_init(t_opperator *opp, char *delimiter)
 	opp->type = here_doc;
 }
 
-t_opperator *new_operator(char *operator, char **input, int *i)
+t_opperator *new_operator(char *operator, char **input, int i)
 {
 	t_opperator	*output;
 
@@ -48,15 +46,72 @@ t_opperator *new_operator(char *operator, char **input, int *i)
 	if (!output)
 		return (NULL);
 	if (ft_strcmp(operator, ">"))
-		redirection_init(output, input[*i + 1], "out");
+		redirection_init(output, input[i + 1], "out");
 	if (ft_strcmp(operator, "<"))
-		redirection_init(output, input[*i + 1], "in");
+		redirection_init(output, input[i + 1], "in");
 	if (ft_strcmp(operator, ">>"))
-		redirection_init(output, input[*i + 1], "app");
+		redirection_init(output, input[i + 1], "app");
 	if (ft_strcmp(operator, "<<"))
-		heredoc_init(output, input[*i + 1]);
+		heredoc_init(output, input[i + 1]);
 	return (output);
 }
+
+void	new_flag(t_command *output_command, char **splited_input, int *i)
+{
+	int		count;
+	int		j;
+
+	count = 0;
+	j = *i;
+	while (is_flag(splited_input[j++]))
+		count++;
+	output_command->flag = (char **)malloc((count + 1) * sizeof(char *));
+	if (!(output_command->flag))
+		error();
+	j = 0;
+	while (splited_input[*i])
+	{
+		if (is_flag(splited_input[*i]))
+		{
+			output_command->flag[j++] = splited_input[*i];
+			*i += 1;
+		}
+		else
+			break;
+	}
+	output_command->flag[j] = NULL;
+}
+
+void	new_options(t_command *output_command, char **splited_input, int *i)
+{
+	int		count;
+	int		j;
+
+	count = 0;
+	j = *i;
+	while (splited_input[j++])
+		count++;
+	output_command->options = (char **)malloc((count + 1) * sizeof(char *));
+	if (!(output_command->options))
+		error();
+	while (splited_input[*i])
+	{
+		output_command->options[j] = splited_input[*i];
+		j++;
+		*i += 1;
+	}
+	output_command->options[j] = NULL;
+}
+
+void	new_redirection(t_command *output_command, char **splited_input, int *i)
+{
+	if (is_rederection(splited_input[*i]))
+	{
+		output_command->operator = new_operator(splited_input[*i], splited_input, *i);
+		*i += 2;
+	}
+}
+
 
 t_command	*new_command(char *input)
 {
@@ -68,18 +123,12 @@ t_command	*new_command(char *input)
 	switch_char(input, ' ', -1);
 	splited_input = ft_split(input, ' ');
 	output = (t_command *)malloc(sizeof(t_command));
+	if (!output)
+		return (NULL);
 	i = 0;
-	while (splited_input[i])
-	{
-		if (is_command(splited_input[i]))
-			output->command = splited_input[i];
-		if (is_flag(splited_input[i]))
-			output->flag = splited_input[i];
-		if (is_rederection(splited_input[i]))
-			output->operator = new_operator(splited_input[i], splited_input, &i);
-		// if (i != 0)
-		// 	add_option(output ,splited_input[i]); // TODO
-		i++;
-	}
+	output->command = splited_input[i++];
+	new_flag(output, splited_input, &i);
+	new_redirection(output, splited_input, &i);
+	new_options(output, splited_input, &i);
 	return (output);
 }
