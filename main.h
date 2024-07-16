@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/13 07:55:32 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/16 06:19:40 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ typedef enum e_tokenType
 typedef struct	s_opperator
 {
 	e_tokenType	type;
-	char		*out_file;
+	char		*file;
 	char		*delimiter;
+	struct s_opperator *next;
 } 				t_opperator;
 
 typedef struct	s_command
@@ -53,6 +54,7 @@ typedef struct s_exec
 int			ft_strlen(char *str);
 int			ft_strcmp(char *str1, char *str2);
 char		**ft_split(char const *s, char c);
+void		add_lstback(t_opperator *operators, t_opperator *to_add);
 // tokenizer
 int			is_quote(char *str);
 int			is_rederection(char *str);
@@ -65,7 +67,7 @@ char		*format(char *str);
 t_exec		*tokenizer(char *input);
 t_exec		*new_exec(t_command *command, t_exec *prev);
 t_command	*new_command(char *input);
-t_opperator *new_operator(char *operator, char **input, int i);
+void	new_redirection(t_command *output_command, char **splited_input, int *i);
 // errors
 void	error(void);
 

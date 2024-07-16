@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 02:42:54 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/13 01:50:53 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/14 05:32:46 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,6 @@ int		is_command(char *str)
 		return (1);
 	return (0);
 }
-
-// int	is_flag(char *str)
-// {
-// 	if (ft_strcmp(str, "-n"))
-// 		return (1);
-// 	return (0);
-// }
 
 int	is_flag(char *str)
 {
