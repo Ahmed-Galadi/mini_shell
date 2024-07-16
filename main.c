@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 00:31:36 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/16 06:34:49 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/16 23:01:39 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ void	print_commands(char	*input)
 		}
 		if (current->command->operator)
 		{
+			printf("\e[1;32moperator:\e[0m\n");
 			while (current->command->operator)
 			{
-				printf("\e[1;32moperator:\e[0m\n\t\e[1;34mtype:\e[0m\t\t%d\n", current->command->operator->type);
+				printf("\t\e[1;34mtype:\e[0m\t\t%d\n", current->command->operator->type);
 				printf("\t\e[1;34mfile:\e[0m\t%s\n", current->command->operator->file);
 				printf("\t\e[1;34mdelimiter:\e[0m\t%s\n",current->command->operator->delimiter);
 				current->command->operator = current->command->operator->next;
