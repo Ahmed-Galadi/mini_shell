@@ -6,7 +6,7 @@
 /*   By: agaladi <agaladi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 04:34:17 by agaladi           #+#    #+#             */
-/*   Updated: 2024/07/16 06:19:40 by agaladi          ###   ########.fr       */
+/*   Updated: 2024/07/17 06:22:10 by agaladi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef enum e_tokenType
 	red_in,
 	red_out,
 	append_out,
-	here_doc
+	here_doc,
 }	e_tokenType;
 
 typedef struct	s_opperator
